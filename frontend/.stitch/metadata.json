@@ -1,0 +1,27 @@
+{
+  "name": "projects/2574078534653431404",
+  "projectId": "2574078534653431404",
+  "title": "Landing Page",
+  "visibility": "PRIVATE",
+  "projectType": "TEXT_TO_UI_PRO",
+  "origin": "STITCH",
+  "deviceType": "DESKTOP",
+  "designTheme": {
+      "colorMode": "DARK",
+      "font": "INTER",
+      "roundness": "ROUND_FOUR",
+      "customColor": "#d2d855",
+      "saturation": 3
+  },
+  "screens": {
+    "index": {
+      "id": "b91de224ca5144ab8cd1b0e54d16dc99",
+      "sourceScreen": "projects/2574078534653431404/screens/b91de224ca5144ab8cd1b0e54d16dc99",
+      "width": 2560,
+      "height": 2048
+    }
+  },
+  "metadata": {
+    "userRole": "OWNER"
+  }
+}

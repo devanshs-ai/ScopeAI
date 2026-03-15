@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Code Explorer | Repository Insight</title>
+<!-- Tailwind CSS v3 with plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#b38a23', // Amber accent from Snapshot
+            olive: '#3d402e',   // Olive green accent
+            background: '#0a0a0a', // Deep dark mode
+            surface: '#121212',
+            border: '#2a2a2a'
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          },
+          borderRadius: {
+            'custom': '4px', // ROUND_FOUR from Snapshot
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-scrollbars">
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0a0a0a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a2a2a;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #b38a23;
+    }
+  </style>
+<style data-purpose="typography-and-effects">
+    body {
+      background-color: #0a0a0a;
+      color: #e5e5e5;
+      font-family: 'Inter', sans-serif;
+    }
+    .glass-panel {
+      background: rgba(18, 18, 18, 0.8);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .terminal-text {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-primary/30 selection:text-primary">
+<!-- BEGIN: MainHeader -->
+<header class="sticky top-0 z-50 w-full border-b border-border glass-panel px-6 py-4 flex items-center justify-between" data-purpose="navigation-bar">
+<div class="flex items-center gap-4">
+<div class="w-8 h-8 bg-primary rounded-custom flex items-center justify-center">
+<svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+</div>
+<h1 class="text-lg font-semibold tracking-tight">CodeExplorer <span class="text-primary/60 font-normal">/ core-engine</span></h1>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-4 text-sm text-gray-400">
+<span class="hover:text-primary cursor-pointer transition-colors">History</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Pull Requests</span>
+<span class="hover:text-primary cursor-pointer transition-colors">Insights</span>
+</div>
+<div class="h-4 w-px bg-border"></div>
+<button class="bg-primary text-black px-4 py-1.5 rounded-custom text-sm font-bold hover:bg-opacity-90 transition-all active:scale-95">
+        Clone Repository
+      </button>
+</div>
+</header>
+<!-- END: MainHeader -->
+<!-- BEGIN: MainLayout -->
+<main class="max-w-7xl mx-auto p-6 md:p-10" data-purpose="explorer-container">
+<!-- BEGIN: RepositoryMetadata -->
+<div class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-widest bg-olive/30 text-primary border border-primary/20">Public</span>
+<span class="text-xs text-gray-500 terminal-text">Last commit: 2 hours ago by @mark_z</span>
+</div>
+<h2 class="text-3xl font-bold tracking-tighter">Distributed Graph Protocol</h2>
+<p class="text-gray-400 mt-2 max-w-2xl leading-relaxed">
+          High-performance engine for mapping social connections across decentralized nodes. Built with Rust and optimized for low-latency traversal.
+        </p>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center gap-2 bg-surface border border-border px-4 py-2 rounded-custom">
+<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18z"></path><path d="M12 7v5l3 3"></path></svg>
+<span class="text-sm font-medium">1,204 Stars</span>
+</div>
+<div class="flex items-center gap-2 bg-surface border border-border px-4 py-2 rounded-custom">
+<svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M16 3h5v5"></path><path d="m21 3-7 7"></path><path d="M21 14v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h1"></path><path d="m14 21-7-7"></path></svg>
+<span class="text-sm font-medium">48 Forks</span>
+</div>
+</div>
+</div>
+<!-- END: RepositoryMetadata -->
+<!-- BEGIN: FileExplorerList -->
+<section class="bg-surface border border-border rounded-custom overflow-hidden shadow-2xl" data-purpose="file-explorer-table">
+<!-- Explorer Header -->
+<div class="grid grid-cols-12 bg-border/30 border-b border-border px-6 py-3 text-[11px] font-bold uppercase tracking-wider text-gray-500">
+<div class="col-span-4">Name</div>
+<div class="col-span-8">AI Architecture Summary</div>
+</div>
+<!-- File Rows -->
+<div class="divide-y divide-border">
+<!-- Folder Item -->
+<div class="grid grid-cols-12 px-6 py-4 hover:bg-white/[0.02] transition-colors group cursor-pointer">
+<div class="col-span-4 flex items-center gap-3">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path></svg>
+<span class="font-medium group-hover:text-primary transition-colors">src</span>
+</div>
+<div class="col-span-8 flex items-center">
+<p class="text-sm text-gray-400 italic">Contains core logic, including the graph traversal engine and node balancing algorithms.</p>
+</div>
+</div>
+<!-- Folder Item -->
+<div class="grid grid-cols-12 px-6 py-4 hover:bg-white/[0.02] transition-colors group cursor-pointer">
+<div class="col-span-4 flex items-center gap-3">
+<svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"></path></svg>
+<span class="font-medium group-hover:text-primary transition-colors">tests</span>
+</div>
+<div class="col-span-8 flex items-center">
+<p class="text-sm text-gray-400 italic">Automated stress tests simulating million-node workloads and collision scenarios.</p>
+</div>
+</div>
+<!-- File Item -->
+<div class="grid grid-cols-12 px-6 py-4 hover:bg-white/[0.02] transition-colors group cursor-pointer">
+<div class="col-span-4 flex items-center gap-3">
+<svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+<span class="font-medium group-hover:text-primary transition-colors">Cargo.toml</span>
+</div>
+<div class="col-span-8 flex items-center">
+<p class="text-sm text-gray-400 italic">Manifest file defining crate dependencies and workspace configurations.</p>
+</div>
+</div>
+<!-- File Item -->
+<div class="grid grid-cols-12 px-6 py-4 hover:bg-white/[0.02] transition-colors group cursor-pointer">
+<div class="col-span-4 flex items-center gap-3">
+<svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+<span class="font-medium group-hover:text-primary transition-colors">README.md</span>
+</div>
+<div class="col-span-8 flex items-center">
+<p class="text-sm text-gray-400 italic">Project overview, installation guide, and architectural philosophy documentation.</p>
+</div>
+</div>
+<!-- File Item -->
+<div class="grid grid-cols-12 px-6 py-4 hover:bg-white/[0.02] transition-colors group cursor-pointer">
+<div class="col-span-4 flex items-center gap-3">
+<svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+<span class="font-medium group-hover:text-primary transition-colors">LICENSE</span>
+</div>
+<div class="col-span-8 flex items-center">
+<p class="text-sm text-gray-400 italic">Open-source MIT license terms.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: FileExplorerList -->
+<!-- BEGIN: AIInsightSection -->
+<section class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6" data-purpose="ai-insights">
+<div class="bg-olive/10 border border-olive/30 p-6 rounded-custom">
+<h3 class="text-primary font-bold text-xs uppercase tracking-widest mb-4">Network Analysis</h3>
+<p class="text-sm leading-relaxed text-gray-300">AI predicts a potential scaling bottleneck in <span class="text-primary terminal-text">node_sync.rs</span> during peak concurrent writes.</p>
+</div>
+<div class="bg-surface border border-border p-6 rounded-custom">
+<h3 class="text-gray-500 font-bold text-xs uppercase tracking-widest mb-4">Security Pulse</h3>
+<p class="text-sm leading-relaxed text-gray-300">All dependencies verified. No vulnerabilities detected in the current dependency tree.</p>
+</div>
+<div class="bg-surface border border-border p-6 rounded-custom">
+<h3 class="text-gray-500 font-bold text-xs uppercase tracking-widest mb-4">Contributor Velocity</h3>
+<p class="text-sm leading-relaxed text-gray-300">Weekly commit frequency is up by 14%. Core engine optimization is the primary focus.</p>
+</div>
+</section>
+<!-- END: AIInsightSection -->
+</main>
+<!-- END: MainLayout -->
+<!-- BEGIN: Footer -->
+<footer class="border-t border-border mt-20 py-8 px-6" data-purpose="site-footer">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+<div class="text-xs text-gray-600 terminal-text">
+        © 2024 CODE EXPLORER ENGINE. SYSTEM_STATUS: OPERATIONAL
+      </div>
+<div class="flex gap-6 text-[10px] font-bold uppercase tracking-widest text-gray-500">
+<a class="hover:text-primary transition-colors" href="#">API</a>
+<a class="hover:text-primary transition-colors" href="#">Terms</a>
+<a class="hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
+</body></html>

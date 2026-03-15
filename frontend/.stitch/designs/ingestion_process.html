@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DataStore - Repository Ingestion</title>
+<!-- BEGIN: External Scripts and Styles -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&amp;family=Fira+Code:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              DEFAULT: '#b38a23',
+              light: '#d4a73d',
+              dark: '#7a5e18',
+            },
+            surface: {
+              DEFAULT: '#121212',
+              card: '#1a1a1a',
+              input: '#242424',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          borderRadius: {
+            'custom': '4px', // From THEME_2: ROUND_FOUR
+          }
+        }
+      }
+    }
+  </script>
+<!-- END: External Scripts and Styles -->
+<style data-purpose="custom-animations">
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s step-end infinite;
+    }
+    .glass-effect {
+      background: rgba(26, 26, 26, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(179, 138, 35, 0.2);
+    }
+    .cinematic-vignette {
+      box-shadow: inset 0 0 150px rgba(0,0,0,0.8);
+    }
+  </style>
+</head>
+<body class="bg-surface text-gray-200 font-sans min-h-screen selection:bg-brand selection:text-black">
+<!-- BEGIN: Layout Wrapper -->
+<main class="relative min-h-screen flex flex-col items-center justify-center p-6 overflow-hidden">
+<!-- Cinematic Background Element -->
+<div class="fixed inset-0 z-0 opacity-20 cinematic-vignette pointer-events-none">
+<img alt="Background Atmosphere" class="w-full h-full object-cover grayscale brightness-50" src="data:image/jpeg;base64,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"/>
+</div>
+<!-- BEGIN: Ingestion Container -->
+<div class="relative z-10 w-full max-w-2xl space-y-8 animate-in fade-in duration-1000" data-purpose="ingestion-card">
+<!-- Header Section -->
+<header class="text-center space-y-2">
+<h1 class="text-4xl font-bold tracking-tight text-brand uppercase">DataStore Ingestion</h1>
+<p class="text-gray-400 font-light">Enter a GitHub repository URL to begin deep architectural analysis.</p>
+</header>
+<!-- BEGIN: Input Form -->
+<section class="glass-effect p-8 rounded-custom shadow-2xl" data-purpose="input-section">
+<form class="space-y-4" onsubmit="return false;">
+<div class="relative">
+<label class="block text-xs font-semibold text-brand-light mb-2 uppercase tracking-widest" for="repo-url">Repository URL</label>
+<div class="flex items-center">
+<input class="w-full bg-surface-input border-gray-800 focus:border-brand focus:ring-1 focus:ring-brand text-gray-100 px-4 py-3 rounded-custom transition-all" id="repo-url" placeholder="https://github.com/username/repository" type="text"/>
+<button class="ml-3 px-8 py-3 bg-brand hover:bg-brand-light text-black font-bold rounded-custom transition-colors duration-200 active:scale-95 whitespace-nowrap" type="submit">
+                INGEST REPOSITORY
+              </button>
+</div>
+</div>
+</form>
+</section>
+<!-- END: Input Form -->
+<!-- BEGIN: Terminal Output -->
+<section class="bg-black border border-gray-800 rounded-custom shadow-2xl overflow-hidden font-mono text-sm" data-purpose="terminal-log">
+<div class="bg-zinc-900 px-4 py-2 border-b border-gray-800 flex items-center justify-between">
+<div class="flex space-x-2">
+<div class="w-2.5 h-2.5 rounded-full bg-red-500/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-brand/50"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-green-500/50"></div>
+</div>
+<span class="text-zinc-500 text-[10px] uppercase tracking-tighter">System Output</span>
+</div>
+<div class="p-6 h-64 overflow-y-auto space-y-3 scrollbar-thin scrollbar-thumb-brand scrollbar-track-transparent" id="terminal-content">
+<!-- Initial state -->
+<div class="text-zinc-500 italic">Waiting for input...</div>
+<!-- Mock Log Items (These would be dynamically added) -->
+<div class="flex space-x-3 hidden" id="log-template">
+<span class="text-brand shrink-0">[$]</span>
+<span class="text-gray-300"></span>
+</div>
+</div>
+</section>
+<!-- END: Terminal Output -->
+<!-- Footer Info -->
+<footer class="flex justify-between items-center text-[10px] text-zinc-500 font-mono">
+<div class="flex items-center space-x-4">
+<span>STATUS: <span class="text-brand animate-pulse">READY</span></span>
+<span>STORAGE: CHROMADB</span>
+</div>
+<div>V2.4.0-STABLE</div>
+</footer>
+</div>
+<!-- END: Ingestion Container -->
+</main>
+<!-- END: Layout Wrapper -->
+<script data-purpose="terminal-simulation">
+    // Simple script to simulate the ingestion process visual
+    const terminal = document.getElementById('terminal-content');
+    const logs = [
+      { text: 'Initialising secure connection...', delay: 500 },
+      { text: 'Cloning repository from remote...', delay: 1500 },
+      { text: 'Reading manifest files...', delay: 2200 },
+      { text: 'AST Parsing: 142 source files detected...', delay: 3000 },
+      { text: 'Generating high-dimensional embeddings (Sentence-BERT)...', delay: 4500 },
+      { text: 'Saving vector records to ChromaDB...', delay: 6000 },
+      { text: 'Process complete. Repository indexed.', delay: 7500, status: 'SUCCESS' }
+    ];
+
+    function addLogLine(text, status = '') {
+      const div = document.createElement('div');
+      div.className = 'flex space-x-3 opacity-0 translate-y-2 transition-all duration-500';
+      
+      const symbol = document.createElement('span');
+      symbol.className = 'text-brand shrink-0';
+      symbol.innerText = '[$]';
+      
+      const content = document.createElement('span');
+      content.className = status === 'SUCCESS' ? 'text-green-500 font-bold' : 'text-gray-300';
+      content.innerText = text;
+
+      div.appendChild(symbol);
+      div.appendChild(content);
+      terminal.appendChild(div);
+
+      // Trigger animation
+      setTimeout(() => {
+        div.classList.remove('opacity-0', 'translate-y-2');
+        terminal.scrollTop = terminal.scrollHeight;
+      }, 50);
+    }
+
+    // Auto-run simulation for demonstration purposes after 1 second
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        terminal.innerHTML = ''; // Clear waiting message
+        logs.forEach(log => {
+          setTimeout(() => {
+            addLogLine(log.text, log.status);
+          }, log.delay);
+        });
+      }, 1000);
+    });
+  </script>
+</body></html>
