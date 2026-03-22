@@ -54,7 +54,7 @@ export default function Ingestion() {
       setTimeout(() => setLogs(prev => [...prev, { text: 'Cloning repository from remote...' }]), 1000);
       setTimeout(() => setLogs(prev => [...prev, { text: 'Reading manifest files and extracting AST...' }]), 2500);
 
-      const response = await fetch('http://localhost:8000/analyze-repo', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:8000'}/analyze-repo`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ repo_url: repoUrl })
