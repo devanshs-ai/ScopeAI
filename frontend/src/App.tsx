@@ -214,14 +214,7 @@ export default function App() {
             <p className="text-xs text-gray-400">© 2024 thedarknight. All rights reserved.</p>
           </div>
           <div className="flex gap-4">
-            {/*  Simple palette reference visualization  */}
-            <div className="flex border border-white/10 p-1 rounded-custom">
-              <div className="w-3 h-3 bg-[#0a0a0a]"></div>
-              <div className="w-3 h-3 bg-[#1a1811]"></div>
-              <div className="w-3 h-3 bg-[#3d3421]"></div>
-              <div className="w-3 h-3 bg-[#7b4c2b]"></div>
-              <div className="w-3 h-3 bg-[#b38a23]"></div>
-            </div>
+
           </div>
         </div>
       </footer>

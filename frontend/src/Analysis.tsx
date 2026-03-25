@@ -347,17 +347,7 @@ export default function Analysis() {
               </div>
             ))}
 
-            {/* Palette Analysis */}
-            <div className="mt-8">
-              <h3 className="text-xs text-[#9ca3af] font-bold mb-3 uppercase">System Palette Analysis</h3>
-              <div className="flex h-6 w-full rounded-sm overflow-hidden border border-[#3d3421]">
-                <div className="flex-1 bg-[#121212]"></div>
-                <div className="flex-1 bg-[#3d3421]"></div>
-                <div className="flex-1 bg-[#373f27]"></div>
-                <div className="flex-1 bg-[#8c6543]"></div>
-                <div className="flex-1 bg-[#b38a23]"></div>
-              </div>
-            </div>
+
           </div>
         </aside>
 
