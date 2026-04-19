@@ -41,39 +41,39 @@ export default function App() {
       {/*  BEGIN: Main Content  */}
       <div className="relative z-10 w-full">
         <main className="flex flex-col items-center justify-center min-h-[calc(100vh-100px)] text-center px-4 pt-4">
-        {/*  BEGIN: Hero Section  */}
-        <section className="max-w-4xl mx-auto" data-purpose="hero-content">
-          <div className="inline-block px-3 py-1 mb-6 border border-brand/30 bg-brand/5 text-[10px] uppercase tracking-[0.3em] text-brand rounded-custom">
-            Llama 3.3 × Groq Powered
+          {/*  BEGIN: Hero Section  */}
+          <section className="max-w-4xl mx-auto" data-purpose="hero-content">
+            <div className="inline-block px-3 py-1 mb-6 border border-brand/30 bg-brand/5 text-[10px] uppercase tracking-[0.3em] text-brand rounded-custom">
+              Llama 3.3 × Groq Powered
+            </div>
+            <h1 className="hero-title text-6xl md:text-8xl lg:text-9xl mb-8 text-white">
+              THE <span className="text-brand">ScopeAI</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12 font-light">
+              Deep-tissue GitHub repository analysis. Real-time code intelligence processed with Llama 3.3 70B via Groq's high-speed inference engine. You don't just search code; you interrogate it.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+              {/*  Call to Action  */}
+              <button onClick={() => navigate('/ingestion')} className="glow-hover bg-brand text-brand-dark px-10 py-4 font-black uppercase tracking-widest text-sm rounded-custom transition-all active:scale-95" data-purpose="main-cta" id="cta-ingest">
+                Ingest Repository
+              </button>
+              {/*  Secondary Action  */}
+              <a className="text-gray-500 uppercase tracking-widest text-[10px] hover:text-white transition-colors border-b border-transparent hover:border-white pb-1" href="#how-it-works">
+                How it works
+              </a>
+            </div>
+          </section>
+          {/*  END: Hero Section  */}
+          {/*  BEGIN: Data Visualizer (Abstract)  */}
+          <div className="mt-24 w-full max-w-5xl opacity-40 hover:opacity-100 transition-opacity duration-1000" data-purpose="canvas-container">
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-brand/50 to-transparent"></div>
+            <div className="flex justify-between py-2 text-[10px] font-mono text-brand uppercase tracking-tighter">
+              <span>ingestion</span>
+              <span>analysis</span>
+              <span>query</span>
+            </div>
           </div>
-          <h1 className="hero-title text-6xl md:text-8xl lg:text-9xl mb-8 text-white">
-            THE <span className="text-brand">ScopeAI</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mb-12 font-light">
-            Deep-tissue GitHub repository analysis. Real-time code intelligence processed with Llama 3.3 70B via Groq's high-speed inference engine. You don't just search code; you interrogate it.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            {/*  Call to Action  */}
-            <button onClick={() => navigate('/ingestion')} className="glow-hover bg-brand text-brand-dark px-10 py-4 font-black uppercase tracking-widest text-sm rounded-custom transition-all active:scale-95" data-purpose="main-cta" id="cta-ingest">
-              Ingest Repository
-            </button>
-            {/*  Secondary Action  */}
-            <a className="text-gray-500 uppercase tracking-widest text-[10px] hover:text-white transition-colors border-b border-transparent hover:border-white pb-1" href="#how-it-works">
-              How it works
-            </a>
-          </div>
-        </section>
-        {/*  END: Hero Section  */}
-        {/*  BEGIN: Data Visualizer (Abstract)  */}
-        <div className="mt-24 w-full max-w-5xl opacity-40 hover:opacity-100 transition-opacity duration-1000" data-purpose="canvas-container">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-brand/50 to-transparent"></div>
-          <div className="flex justify-between py-2 text-[10px] font-mono text-brand uppercase tracking-tighter">
-            <span>ingestion</span>
-            <span>analysis</span>
-            <span>query</span>
-          </div>
-        </div>
-        {/*  END: Data Visualizer  */}
+          {/*  END: Data Visualizer  */}
         </main>
         {/*  BEGIN: Content Sections  */}
         <div className="w-full max-w-5xl mx-auto flex flex-col gap-32 py-32 text-left px-8 border-t border-brand/10 mt-32">
@@ -104,14 +104,14 @@ export default function App() {
 
             {/*  BEGIN: Flowchart  */}
             <div className="mt-16 w-full max-w-4xl bg-black/30 p-8 rounded-2xl border border-white/5 flex flex-col items-center relative font-sans">
-              
+
               {/* Step 1 */}
               <div className="w-full bg-[#121212] text-white rounded-md p-5 text-center shadow-lg border border-[#3d3421] relative z-10 hover:border-[#b38a23] transition-colors">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#b38a23]/30 text-xs font-mono hidden sm:block">1</div>
                 <h3 className="font-bold text-lg mb-1 text-[#b38a23]">1 · Repository ingestion</h3>
                 <p className="text-white/70 text-sm">Clone repo → parse .py with AST · parse .json / .yaml as text · repo deleted after parsing</p>
               </div>
-              
+
               <svg className="w-6 h-6 text-[#3d3421] my-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
 
               {/* Step 2 */}
@@ -170,7 +170,7 @@ export default function App() {
               <div className="w-full bg-[#121212] text-white rounded-md p-5 text-center shadow-lg border border-[#3d3421] relative z-10 hover:border-[#b38a23] transition-colors">
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#b38a23]/30 text-xs font-mono hidden sm:block">6</div>
                 <h3 className="font-bold text-lg mb-1 text-[#b38a23]">6 · ChromaDB storage</h3>
-                <p className="text-white/70 text-sm">token ID · 384-dim vector embedding<br/>metadata: file name · file type</p>
+                <p className="text-white/70 text-sm">token ID · 384-dim vector embedding<br />metadata: file name · file type</p>
               </div>
 
               <svg className="w-6 h-6 text-[#3d3421] my-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
@@ -211,7 +211,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-left">
             <p className="text-[10px] text-gray-600 uppercase tracking-widest">Code Intelligence Infrastructure</p>
-            <p className="text-xs text-gray-400">© 2024 thedarknight. All rights reserved.</p>
+            <p className="text-xs text-gray-400">© thedarknight. All rights reserved.</p>
           </div>
           <div className="flex gap-4">
 
